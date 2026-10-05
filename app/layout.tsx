@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mercury - Portal Akaun",
-  description: "Portal Akaun Rasmi Mercury",
+  title: "Mahadana - Portal Akun",
+  description: "Portal Akun Resmi Mahadana",
   robots: {
     index: false,
     follow: false,
@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
