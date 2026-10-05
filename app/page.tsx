@@ -26,8 +26,8 @@ interface Transaction {
 const watchlistData = [
   { symbol: 'BTC/USD', name: 'Bitcoin', price: '$68,400.00', change: '+3.12%', positive: true, cat: 'crypto' },
   { symbol: 'ETH/USD', name: 'Ethereum', price: '$3,520.50', change: '+1.85%', positive: true, cat: 'crypto' },
-  { symbol: 'MAYBANK.KL', name: 'Malayan Banking', price: 'RM 9.92', change: '-0.20%', positive: false, cat: 'saham-my' },
-  { symbol: 'TENAGA.KL', name: 'Tenaga Nasional', price: 'RM 13.80', change: '+0.44%', positive: true, cat: 'saham-my' },
+  { symbol: 'BBCA.JK', name: 'Bank Central Asia', price: 'Rp 10,150', change: '-0.49%', positive: false, cat: 'saham-id' },
+  { symbol: 'TLKM.JK', name: 'Telkom Indonesia', price: 'Rp 3,120', change: '+0.97%', positive: true, cat: 'saham-id' },
   { symbol: 'NVDA', name: 'Nvidia Corporation', price: '$128.20', change: '+4.15%', positive: true, cat: 'saham-us' },
   { symbol: 'EUR/USD', name: 'Euro / US Dollar', price: '1.0892', change: '-0.05%', positive: false, cat: 'forex' }
 ];
@@ -61,7 +61,7 @@ export default function Home() {
   const [bankInfoInput, setBankInfoInput] = useState('');
 
   // Profile Bank Form
-  const [userBankName, setUserBankName] = useState('Maybank');
+  const [userBankName, setUserBankName] = useState('BCA');
   const [userAccInput, setUserAccInput] = useState('');
   const [userHolderInput, setUserHolderInput] = useState('');
 
@@ -154,10 +154,10 @@ export default function Home() {
       labels = ['10m', '20m', '30m', '40m', '50m', '60m'];
       baseValues = [68200, 68250, 68180, 68300, 68350, 68400];
     } else if (timeframe === '1W') {
-      labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
       baseValues = [65000, 66200, 65800, 67100, 67900, 68100, 68400];
     } else if (timeframe === '1M') {
-      labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+      labels = ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'];
       baseValues = [62000, 64500, 66000, 68400];
     }
 
@@ -170,8 +170,8 @@ export default function Home() {
       dataPoints = baseValues.map(v => Number((v * 0.051).toFixed(2)));
       borderColor = '#8b5cf6';
       backgroundColor = 'rgba(139, 92, 246, 0.1)';
-    } else if (symbol.includes('.KL')) {
-      dataPoints = baseValues.map(v => Number((v * 0.00014 + (symbol.includes('MAYBANK') ? 9.5 : 13.2)).toFixed(2)));
+    } else if (symbol.includes('.JK')) {
+      dataPoints = baseValues.map(v => Number((v * 0.15 + (symbol.includes('BBCA') ? 9500 : 3000)).toFixed(0)));
       borderColor = '#10b981';
       backgroundColor = 'rgba(16, 185, 129, 0.1)';
     } else if (symbol === 'NVDA' || symbol === 'AAPL') {
@@ -224,7 +224,7 @@ export default function Home() {
           return updated;
         });
         if (data.bankInfo) {
-          setUserBankName(data.bankInfo.bankName || 'Maybank');
+          setUserBankName(data.bankInfo.bankName || 'BCA');
           setUserAccInput(data.bankInfo.accNumber || '');
           setUserHolderInput(data.bankInfo.holderName || '');
           if (data.bankInfo.accNumber) {
@@ -253,12 +253,12 @@ export default function Home() {
         setCurrentUser(data.user);
         localStorage.setItem('tradex_user', JSON.stringify(data.user));
         setAuthModalOpen(false);
-        showAlert('Berjaya', 'Log masuk berjaya!');
+        showAlert('Berhasil', 'Masuk berhasil!');
       } else {
-        showAlert('Ralat', data.message || 'Log masuk gagal');
+        showAlert('Kesalahan', data.message || 'Masuk gagal');
       }
     } catch (err) {
-      showAlert('Ralat', 'Gagal berhubung dengan pelayan');
+      showAlert('Kesalahan', 'Gagal terhubung dengan server');
     }
   };
 
@@ -275,12 +275,12 @@ export default function Home() {
         setCurrentUser(data.user);
         localStorage.setItem('tradex_user', JSON.stringify(data.user));
         setAuthModalOpen(false);
-        showAlert('Berjaya', 'Pendaftaran berjaya!');
+        showAlert('Berhasil', 'Pendaftaran berhasil!');
       } else {
-        showAlert('Ralat', data.message || 'Pendaftaran gagal');
+        showAlert('Kesalahan', data.message || 'Pendaftaran gagal');
       }
     } catch (err) {
-      showAlert('Ralat', 'Gagal berhubung dengan pelayan');
+      showAlert('Kesalahan', 'Gagal terhubung dengan server');
     }
   };
 
@@ -308,10 +308,10 @@ export default function Home() {
         setDepAmountInput('');
       } else {
         const data = await res.json();
-        showAlert('Ralat', data.message || 'Pengajuan deposit gagal');
+        showAlert('Kesalahan', data.message || 'Pengajuan deposit gagal');
       }
     } catch (err) {
-      showAlert('Ralat', 'Gagal membuat transaksi');
+      showAlert('Kesalahan', 'Gagal membuat transaksi');
     }
   };
 
@@ -329,21 +329,21 @@ export default function Home() {
           userName: currentUser.name,
           type: 'Withdraw',
           amount,
-          bankDetails: bankInfoInput || 'Maybank - 1234567890'
+          bankDetails: bankInfoInput || 'BCA - 1234567890'
         })
       });
 
       if (res.ok) {
-        showAlert('Berjaya', 'Permohonan pengeluaran berjaya dihantar');
+        showAlert('Berhasil', 'Permohonan penarikan berhasil dikirim');
         setWdAmountInput('');
         setSubTab('status');
         fetchTransactions();
       } else {
         const data = await res.json();
-        showAlert('Ralat', data.message || 'Pengeluaran gagal');
+        showAlert('Kesalahan', data.message || 'Penarikan gagal');
       }
     } catch (err) {
-      showAlert('Ralat', 'Gagal membuat transaksi pengeluaran');
+      showAlert('Kesalahan', 'Gagal membuat transaksi penarikan');
     }
   };
 
@@ -375,12 +375,12 @@ export default function Home() {
         const updated = await res.json();
         setCurrentUser(updated);
         localStorage.setItem('tradex_user', JSON.stringify(updated));
-        showAlert('Berjaya', 'Akaun bank berjaya disimpan!');
+        showAlert('Berhasil', 'Akun bank berhasil disimpan!');
       } else {
-        showAlert('Ralat', 'Gagal menyimpan maklumat bank.');
+        showAlert('Kesalahan', 'Gagal menyimpan informasi bank.');
       }
     } catch (err) {
-      showAlert('Ralat', 'Gagal menyimpan maklumat bank');
+      showAlert('Kesalahan', 'Gagal menyimpan informasi bank');
     }
   };
 
@@ -392,7 +392,7 @@ export default function Home() {
     if (currentUser) {
       localStorage.removeItem('tradex_user');
       setCurrentUser(null);
-      showAlert('Maklumat', 'Anda telah log keluar.');
+      showAlert('Informasi', 'Anda telah keluar.');
     } else {
       setAuthMode('login');
       setAuthModalOpen(true);
@@ -404,7 +404,7 @@ export default function Home() {
     initChart(chartTimeframe, symbol);
   };
 
-  const formattedBalance = currentUser?.balance ? `RM ${currentUser.balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : 'RM 0.00';
+  const formattedBalance = currentUser?.balance ? `Rp ${currentUser.balance.toLocaleString('id-ID', { minimumFractionDigits: 2 })}` : 'Rp 0,00';
 
   return (
     <div className="bg-slate-50 text-slate-800 font-sans min-h-screen pb-24">
@@ -412,16 +412,15 @@ export default function Home() {
       {/* TOP HEADER */}
       <header className="bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm sticky top-0 z-40 px-4 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-2">
-          <img src="./myylogo.png" alt="Logo Mercury" className="h-8 w-auto object-contain" />
+          <img src="./myylogo.png" alt="Logo Mahadana" className="h-8 w-auto object-contain" />
           <div>
-            <h1 className="font-bold text-sm tracking-wide text-blue-900 leading-none">MERCURY</h1>
-            <p className="text-[10px] text-slate-500">Portal Akaun</p>
+            <h1 className="font-bold text-sm tracking-wide text-blue-900 leading-none">MAHADANA</h1>
+            <p className="text-[10px] text-slate-500">Portal Akun</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-3">
-          <select onChange={(e) => console.log(e.target.value)} className="bg-slate-100 border border-slate-300 text-xs text-slate-700 rounded-lg px-2 py-1 outline-none focus:border-blue-500">
-            <option value="ms">🇲🇾 MY</option>
+          <select onChange={(e) => console.log(e.target.value)} defaultValue="id" className="bg-slate-100 border border-slate-300 text-xs text-slate-700 rounded-lg px-2 py-1 outline-none focus:border-blue-500">
             <option value="id">🇮🇩 ID</option>
             <option value="en">🇬🇧 EN</option>
             <option value="zh">🇨🇳 ZH</option>
@@ -431,7 +430,7 @@ export default function Home() {
             onClick={() => currentUser ? setActiveTab('profile') : setAuthModalOpen(true)} 
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition shadow-md shadow-blue-600/20"
           >
-            {currentUser ? (currentUser.name ? currentUser.name.split(' ')[0] : 'User') : 'Log Masuk'}
+            {currentUser ? (currentUser.name ? currentUser.name.split(' ')[0] : 'User') : 'Masuk'}
           </button>
         </div>
       </header>
@@ -451,22 +450,22 @@ export default function Home() {
                     KEUNTUNGAN MAKSIMAL
                   </span>
                   <h2 className="text-lg font-extrabold text-slate-900 leading-tight bg-white/60 p-1.5 rounded-lg backdrop-blur-[2px]">
-                    Mencapai Kejayaan Kewangan Bersama Mercury
+                    Mencapai Kesuksesan Finansial Bersama Mahadana
                   </h2>
                   <button onClick={() => setActiveTab('chart')} className="text-xs bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-xl w-max transition shadow-sm">
-                    Sistem Eksekusi Pantas &rarr;
+                    Sistem Eksekusi Cepat &rarr;
                   </button>
                 </div>
 
                 <div className="w-1/2 p-5 bg-cover bg-center flex flex-col justify-between space-y-3 min-h-[160px]" style={{ backgroundImage: "url('./Mybanner2.jpeg')" }}>
                   <span className="text-[10px] font-bold text-blue-700 tracking-wider bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full w-max border border-blue-200 shadow-sm">
-                    PASARAN GLOBAL
+                    PASAR GLOBAL
                   </span>
                   <h2 className="text-lg font-extrabold text-slate-900 leading-tight bg-white/60 p-1.5 rounded-lg backdrop-blur-[2px]">
-                    Pelaburan Bijak dalam Saham
+                    Investasi Cerdas dalam Saham
                   </h2>
                   <button onClick={() => setActiveTab('chart')} className="text-xs bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-xl w-max transition shadow-sm">
-                    Terokai Pasaran &rarr;
+                    Jelajahi Pasar &rarr;
                   </button>
                 </div>
               </div>
@@ -480,25 +479,25 @@ export default function Home() {
             {/* RINGKASAN SALDO REAL */}
             <div className="bg-white p-4 rounded-2xl border border-blue-100 shadow-md space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500 font-medium">Jumlah Saldo</span>
+                <span className="text-xs text-slate-500 font-medium">Total Saldo</span>
                 <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${currentUser ? 'text-blue-700 bg-blue-500/10 border-blue-500/20' : 'text-amber-700 bg-amber-500/10 border-amber-500/20'}`}>
-                  {currentUser ? 'Aktif' : 'Belum Log Masuk'}
+                  {currentUser ? 'Aktif' : 'Belum Masuk'}
                 </span>
               </div>
               <p className="text-2xl font-black text-blue-950">{formattedBalance}</p>
               
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 text-center">
                 <div>
-                  <p className="text-[10px] text-slate-500">Boleh Ditarik</p>
+                  <p className="text-[10px] text-slate-500">Dapat Ditarik</p>
                   <p className="text-xs font-bold text-slate-800">{formattedBalance}</p>
                 </div>
                 <div>
                   <p className="text-[10px] text-slate-500">Dalam Trading</p>
-                  <p className="text-xs font-bold text-slate-800">RM 0.00</p>
+                  <p className="text-xs font-bold text-slate-800">Rp 0,00</p>
                 </div>
                 <div>
                   <p className="text-[10px] text-slate-500">Keuntungan</p>
-                  <p className="text-xs font-bold text-blue-600">RM 0.00</p>
+                  <p className="text-xs font-bold text-blue-600">Rp 0,00</p>
                 </div>
               </div>
 
@@ -507,7 +506,7 @@ export default function Home() {
                   Deposit Saldo
                 </button>
                 <button onClick={() => { setActiveTab('order'); setSubTab('withdraw'); }} className="bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs py-2 rounded-xl flex items-center justify-center transition shadow-md shadow-rose-500/20">
-                  Pengeluaran Dana
+                  Penarikan Dana
                 </button>
               </div>
             </div>
@@ -517,7 +516,7 @@ export default function Home() {
               <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Keunggulan Platform</h3>
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-1">
-                  <p className="font-bold text-xs text-slate-900">Keselamatan Tinggi</p>
+                  <p className="font-bold text-xs text-slate-900">Keamanan Tinggi</p>
                   <p className="text-[10px] text-slate-500">Enkripsi ketat & terjamin.</p>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-1">
@@ -546,8 +545,8 @@ export default function Home() {
                 <select onChange={(e) => updateChartSymbol(e.target.value)} className="bg-slate-50 border border-slate-200 text-xs text-slate-800 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500" value={selectedSymbol}>
                   <option value="BTC/USD">Bitcoin (BTC/USD)</option>
                   <option value="ETH/USD">Ethereum (ETH/USD)</option>
-                  <option value="MAYBANK.KL">Maybank (KLSE)</option>
-                  <option value="TENAGA.KL">Tenaga Nasional (KLSE)</option>
+                  <option value="BBCA.JK">Bank BCA (IDX)</option>
+                  <option value="TLKM.JK">Telkom Indonesia (IDX)</option>
                   <option value="AAPL">Apple Inc. (AAPL)</option>
                   <option value="NVDA">Nvidia Corp (NVDA)</option>
                   <option value="EUR/USD">EUR / USD (Forex)</option>
@@ -604,9 +603,9 @@ export default function Home() {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Senarai Pantauan</h3>
+                <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Daftar Pantauan</h3>
                 <div className="flex space-x-1 text-[10px] overflow-x-auto pb-1">
-                  {['all', 'saham-my', 'saham-us', 'crypto', 'forex'].map((cat) => (
+                  {['all', 'saham-id', 'saham-us', 'crypto', 'forex'].map((cat) => (
                     <button 
                       key={cat} 
                       onClick={() => setWatchlistCategory(cat)} 
@@ -641,23 +640,23 @@ export default function Home() {
         {/* TAB 3: BERITA / NEWS */}
         {activeTab === 'news' && (
           <div className="space-y-3">
-            <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Berita Pasaran Terkini</h3>
+            <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Berita Pasar Terkini</h3>
             <div className="space-y-2.5">
               <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
                 <div className="flex justify-between items-center text-[10px]">
                   <span className="text-blue-700 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-200">Forex</span>
-                  <span className="text-slate-400">10 minit lepas</span>
+                  <span className="text-slate-400">10 menit yang lalu</span>
                 </div>
-                <h4 className="font-bold text-xs text-slate-900 leading-snug">Dolar AS Mengukuh Menjelang Keputusan Kadar Faedah Fed</h4>
-                <p className="text-[11px] text-slate-500 line-clamp-2">Pasaran mata wang global menyaksikan pergerakan pesat susulan spekulasi pengumuman polisi kewangan terbaru daripada Rizab Persekutuan.</p>
+                <h4 className="font-bold text-xs text-slate-900 leading-snug">Dolar AS Menguat Menjelang Keputusan Suku Bunga Fed</h4>
+                <p className="text-[11px] text-slate-500 line-clamp-2">Pasar mata uang global menyaksikan pergerakan pesat menyusul spekulasi pengumuman kebijakan keuangan terbaru dari Federal Reserve.</p>
               </div>
               <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
                 <div className="flex justify-between items-center text-[10px]">
                   <span className="text-purple-700 font-bold bg-purple-50 px-2 py-0.5 rounded border border-purple-200">Kripto</span>
-                  <span className="text-slate-400">45 minit lepas</span>
+                  <span className="text-slate-400">45 menit yang lalu</span>
                 </div>
-                <h4 className="font-bold text-xs text-slate-900 leading-snug">Bitcoin Menembusi $68,000 Susulan Pengumpulan ETF</h4>
-                <p className="text-[11px] text-slate-500 line-clamp-2">Aliran masuk dana institusi ke dalam ETF Bitcoin spot terus mendorong melonjaknya harga ke paras tertinggi baharu tahun ini.</p>
+                <h4 className="font-bold text-xs text-slate-900 leading-snug">Bitcoin Menembus $68,000 Menyusul Akumulasi ETF</h4>
+                <p className="text-[11px] text-slate-500 line-clamp-2">Arus masuk dana institusi ke dalam ETF Bitcoin spot terus mendorong kenaikan harga ke level tertinggi baru tahun ini.</p>
               </div>
             </div>
           </div>
@@ -670,18 +669,18 @@ export default function Home() {
 
             <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
               <button onClick={() => setSubTab('deposit')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'deposit' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Deposit</button>
-              <button onClick={() => setSubTab('withdraw')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'withdraw' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Withdraw</button>
+              <button onClick={() => setSubTab('withdraw')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'withdraw' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Tarik</button>
               <button onClick={() => { setSubTab('status'); fetchTransactions(); }} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'status' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Status</button>
             </div>
 
             {subTab === 'deposit' && (
               <form onSubmit={handleDepositAction} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Jumlah (MYR)</label>
-                  <input type="number" value={depAmountInput} onChange={(e) => setDepAmountInput(e.target.value)} required placeholder="Contoh: 500" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-blue-500" />
+                  <label className="block text-xs text-slate-500 mb-1">Jumlah (IDR)</label>
+                  <input type="number" value={depAmountInput} onChange={(e) => setDepAmountInput(e.target.value)} required placeholder="Contoh: 500000" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
-                  Hantar Pengajuan Deposit
+                  Kirim Pengajuan Deposit
                 </button>
               </form>
             )}
@@ -689,15 +688,15 @@ export default function Home() {
             {subTab === 'withdraw' && (
               <form onSubmit={handleWithdrawAction} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Jumlah Pengeluaran (MYR)</label>
-                  <input type="number" value={wdAmountInput} onChange={(e) => setWdAmountInput(e.target.value)} required placeholder="Contoh: 200" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
+                  <label className="block text-xs text-slate-500 mb-1">Jumlah Penarikan (IDR)</label>
+                  <input type="number" value={wdAmountInput} onChange={(e) => setWdAmountInput(e.target.value)} required placeholder="Contoh: 200000" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Nombor Akaun Bank & Nama Pemilik</label>
-                  <input type="text" value={bankInfoInput} onChange={(e) => setBankInfoInput(e.target.value)} required placeholder="Maybank - 1234567890 (Nama Pemilik)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
+                  <label className="block text-xs text-slate-500 mb-1">Nomor Rekening Bank & Nama Pemilik</label>
+                  <input type="text" value={bankInfoInput} onChange={(e) => setBankInfoInput(e.target.value)} required placeholder="BCA - 1234567890 (Nama Pemilik)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
                 </div>
                 <button type="submit" className="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-rose-500/20">
-                  Mohon Pengeluaran
+                  Ajukan Penarikan
                 </button>
               </form>
             )}
@@ -705,12 +704,12 @@ export default function Home() {
             {subTab === 'status' && (
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <h4 className="text-xs font-bold text-slate-700">Sejarah & Status Transaksi</h4>
+                  <h4 className="text-xs font-bold text-slate-700">Riwayat & Status Transaksi</h4>
                   <span className="text-[10px] text-slate-400">Terkini</span>
                 </div>
                 <div className="space-y-2">
                   {transactions.length === 0 ? (
-                    <p className="text-xs text-slate-500 text-center py-4">Tiada sejarah transaksi.</p>
+                    <p className="text-xs text-slate-500 text-center py-4">Tidak ada riwayat transaksi.</p>
                   ) : (
                     transactions.map((trx) => (
                       <div key={trx.trxId} className="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs">
@@ -719,10 +718,10 @@ export default function Home() {
                             <span className={`font-bold ${trx.type === 'Deposit' ? 'text-blue-600' : 'text-rose-600'}`}>{trx.type}</span>
                             <span className="text-[10px] text-slate-400">{trx.trxId}</span>
                           </div>
-                          <p className="text-[10px] text-slate-500 mt-0.5">{new Date(trx.createdAt).toLocaleString()}</p>
+                          <p className="text-[10px] text-slate-500 mt-0.5">{new Date(trx.createdAt).toLocaleString('id-ID')}</p>
                         </div>
                         <div className="text-right">
-                          <p className="font-bold text-slate-900">RM {trx.amount.toFixed(2)}</p>
+                          <p className="font-bold text-slate-900">Rp {trx.amount.toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
                           <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${trx.status === 'Berhasil' ? 'bg-blue-500/10 text-blue-700 border border-blue-500/20' : trx.status === 'Ditolak' ? 'bg-rose-500/10 text-rose-700 border border-rose-500/20' : 'bg-amber-500/10 text-amber-700 border border-amber-500/20'}`}>
                             {trx.status}
                           </span>
@@ -745,8 +744,8 @@ export default function Home() {
                   {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : '?'}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-sm text-slate-900">{currentUser?.name || 'Sila Log Masuk'}</h3>
-                  <p className="text-[11px] text-slate-500">{currentUser?.email || 'Log masuk untuk akses akaun'}</p>
+                  <h3 className="font-bold text-sm text-slate-900">{currentUser?.name || 'Silakan Masuk'}</h3>
+                  <p className="text-[11px] text-slate-500">{currentUser?.email || 'Masuk untuk akses akun'}</p>
                   <span className="inline-block mt-1 text-[9px] bg-amber-500/10 text-amber-700 border border-amber-500/20 px-2 py-0.5 rounded font-bold">
                     {currentUser?.kycStatus || 'Unverified'}
                   </span>
@@ -758,37 +757,37 @@ export default function Home() {
                   Deposit
                 </button>
                 <button onClick={() => { setActiveTab('order'); setSubTab('withdraw'); }} className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 rounded-xl text-xs border border-slate-200 transition">
-                  Withdraw
+                  Tarik
                 </button>
               </div>
             </div>
 
             <form onSubmit={handleBankSave} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-md space-y-3">
               <h4 className="font-bold text-xs text-slate-900 flex items-center">
-                Maklumat Akaun Bank Saya
+                Informasi Rekening Bank Saya
               </h4>
               <div>
                 <label className="block text-[11px] text-slate-500 mb-1">Pilih Bank</label>
                 <select value={userBankName} onChange={(e) => setUserBankName(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500">
-                  <option value="Maybank">Maybank (Malayan Banking Berhad)</option>
-                  <option value="CIMB Bank">CIMB Bank Berhad</option>
-                  <option value="Public Bank">Public Bank Berhad</option>
-                  <option value="RHB Bank">RHB Bank Berhad</option>
-                  <option value="Hong Leong Bank">Hong Leong Bank Berhad</option>
-                  <option value="Bank Islam">Bank Islam Malaysia Berhad</option>
-                  <option value="AmBank">AmBank Berhad</option>
+                  <option value="BCA">BCA (Bank Central Asia)</option>
+                  <option value="Mandiri">Bank Mandiri</option>
+                  <option value="BRI">BRI (Bank Rakyat Indonesia)</option>
+                  <option value="BNI">BNI (Bank Negara Indonesia)</option>
+                  <option value="CIMB Niaga">CIMB Niaga</option>
+                  <option value="Permata Bank">Permata Bank</option>
+                  <option value="Bank Danamon">Bank Danamon</option>
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] text-slate-500 mb-1">Nombor Akaun Bank</label>
+                <label className="block text-[11px] text-slate-500 mb-1">Nomor Rekening Bank</label>
                 <input type="text" value={userAccInput} onChange={(e) => setUserAccInput(e.target.value)} required placeholder="1234567890" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-500 mb-1">Nama Pemilik Akaun</label>
+                <label className="block text-[11px] text-slate-500 mb-1">Nama Pemilik Rekening</label>
                 <input type="text" value={userHolderInput} onChange={(e) => setUserHolderInput(e.target.value)} required placeholder="Nama Anda" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
               </div>
               <button type="submit" className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-bold py-2 rounded-xl text-xs transition">
-                Simpan Akaun Bank
+                Simpan Rekening Bank
               </button>
             </form>
 
@@ -797,7 +796,7 @@ export default function Home() {
                 <span className="text-xs font-bold">Hubungi Kami</span>
               </a>
               <button onClick={handleLogoutLoginBtn} className="w-full bg-rose-50 border border-rose-200 text-rose-600 hover:bg-rose-100 p-3 rounded-xl font-bold text-xs transition">
-                {currentUser ? 'Log Keluar' : 'Log Masuk / Daftar'}
+                {currentUser ? 'Keluar' : 'Masuk / Daftar'}
               </button>
             </div>
           </div>
@@ -814,7 +813,7 @@ export default function Home() {
           </button>
           <button onClick={() => setActiveTab('chart')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'chart' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="bar-chart-2" className="w-5 h-5"></i>
-            <span>Pasaran</span>
+            <span>Pasar</span>
           </button>
           <button onClick={() => setActiveTab('news')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'news' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="globe" className="w-5 h-5"></i>
@@ -841,21 +840,21 @@ export default function Home() {
 
             <div className="flex border-b border-slate-200 pb-2">
               <button onClick={() => setAuthMode('login')} className={`w-1/2 text-center pb-1 text-xs font-bold ${authMode === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-400'}`}>
-                Log Masuk
+                Masuk
               </button>
               <button onClick={() => setAuthMode('register')} className={`w-1/2 text-center pb-1 text-xs font-bold ${authMode === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-400'}`}>
-                Daftar Akaun
+                Daftar Akun
               </button>
             </div>
 
             {authMode === 'login' ? (
               <form onSubmit={handleLoginSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">E-mel / ID Pengguna</label>
+                  <label className="block text-xs text-slate-500 mb-1">Email / ID Pengguna</label>
                   <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Kata Laluan</label>
+                  <label className="block text-xs text-slate-500 mb-1">Kata Sandi</label>
                   <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
@@ -865,15 +864,15 @@ export default function Home() {
             ) : (
               <form onSubmit={handleRegisterSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Nama Penuh</label>
+                  <label className="block text-xs text-slate-500 mb-1">Nama Lengkap</label>
                   <input type="text" value={regFullname} onChange={(e) => setRegFullname(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">E-mel</label>
+                  <label className="block text-xs text-slate-500 mb-1">Email</label>
                   <input type="email" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Kata Laluan</label>
+                  <label className="block text-xs text-slate-500 mb-1">Kata Sandi</label>
                   <input type="password" value={regPassword} onChange={(e) => setRegPassword(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
@@ -895,11 +894,11 @@ export default function Home() {
             </div>
             <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
               <p className="text-[10px] text-slate-400">Jumlah Deposit</p>
-              <p className="text-base font-extrabold text-blue-600">RM {depositAmountPop.toFixed(2)}</p>
+              <p className="text-base font-extrabold text-blue-600">Rp {depositAmountPop.toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-2">
               <button onClick={() => window.open('https://wa.me/00000', '_blank')} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
-                Hubungi Customer Service
+                Hubungi Layanan Pelanggan
               </button>
               <button onClick={() => setDepositModalOpen(false)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">
                 Tutup
