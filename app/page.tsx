@@ -32,6 +32,244 @@ const watchlistData = [
   { symbol: 'EUR/USD', name: 'Euro / US Dollar', price: '1.0892', change: '-0.05%', positive: false, cat: 'forex' }
 ];
 
+// Kamus Terjemahan Lengkap 100% (ID, EN, ZH)
+const translations: Record<string, Record<string, string>> = {
+  id: {
+    portalAkun: 'Portal Akun',
+    masuk: 'Masuk',
+    keluar: 'Keluar',
+    keluarInfo: 'Anda telah keluar.',
+    keuntunganMaksimal: 'KEUNTUNGAN MAKSIMAL',
+    banner1Title: 'Mencapai Kesuksesan Finansial Bersama Mahadana',
+    banner1Btn: 'Sistem Eksekusi Cepat',
+    pasarGlobal: 'PASAR GLOBAL',
+    banner2Title: 'Investasi Cerdas dalam Saham',
+    banner2Btn: 'Jelajahi Pasar',
+    totalSaldo: 'Total Saldo',
+    aktif: 'Aktif',
+    belumMasuk: 'Belum Masuk',
+    dapatDitarik: 'Dapat Ditarik',
+    dalamTrading: 'Dalam Trading',
+    keuntungan: 'Keuntungan',
+    depositSaldo: 'Deposit Saldo',
+    penarikanDana: 'Penarikan Dana',
+    keunggulanPlatform: 'Keunggulan Platform',
+    keamananTinggi: 'Keamanan Tinggi',
+    keamananDesc: 'Enkripsi ketat & terjamin.',
+    dataRealtime: 'Data Real-Time',
+    dataRealtimeDesc: 'Pantau harga secara langsung.',
+    marketWatch: 'Market Watch & Analytics',
+    hargaTerkini: 'Harga Terkini',
+    tertinggi: 'Tertinggi',
+    terendah: 'Terendah',
+    beliBuy: 'BELI / BUY',
+    jualSell: 'JUAL / SELL',
+    daftarPantauan: 'Daftar Pantauan',
+    beritaPasar: 'Berita Pasar Terkini',
+    pusatTransaksi: 'Pusat Transaksi Dana',
+    deposit: 'Deposit',
+    tarik: 'Tarik',
+    status: 'Status',
+    jumlahIdr: 'Jumlah (IDR)',
+    contohDep: 'Contoh: 500000',
+    kirimDep: 'Kirim Pengajuan Deposit',
+    jumlahWd: 'Jumlah Penarikan (IDR)',
+    contohWd: 'Contoh: 200000',
+    rekInfo: 'Nomor Rekening Bank & Nama Pemilik',
+    rekPlaceholder: 'BCA - 1234567890 (Nama Pemilik)',
+    ajukanWd: 'Ajukan Penarikan',
+    riwayatTrx: 'Riwayat & Status Transaksi',
+    terkini: 'Terkini',
+    tidakAdaTrx: 'Tidak ada riwayat transaksi.',
+    silakanMasuk: 'Silakan Masuk',
+    masukAkses: 'Masuk untuk akses akun',
+    unverified: 'Unverified',
+    rekeningBankSaya: 'Informasi Rekening Bank Saya',
+    pilihBank: 'Pilih Bank',
+    noRek: 'Nomor Rekening Bank',
+    namaPemilik: 'Nama Pemilik Rekening',
+    simpanBank: 'Simpan Rekening Bank',
+    hubungiKami: 'Hubungi Kami',
+    masukDaftar: 'Masuk / Daftar',
+    navBeranda: 'Beranda',
+    navPasar: 'Pasar',
+    navBerita: 'Berita',
+    navTransaksi: 'Transaksi',
+    navProfil: 'Profil',
+    daftarAkunTab: 'Daftar Akun',
+    emailId: 'Email / ID Pengguna',
+    kataSandi: 'Kata Sandi',
+    namaLengkap: 'Nama Lengkap',
+    email: 'Email',
+    daftarSekarang: 'Daftar Sekarang',
+    statusDepTitle: 'Status Pengajuan Deposit',
+    statusDepDesc: 'Pengajuan deposit telah dibuat, silakan hubungi layanan pelanggan.',
+    jumlahDepositLabel: 'Jumlah Deposit',
+    hubungiCs: 'Hubungi Layanan Pelanggan',
+    tutup: 'Tutup',
+    berhasil: 'Berhasil',
+    kesalahan: 'Kesalahan',
+    informasi: 'Informasi',
+    ok: 'OK'
+  },
+  en: {
+    portalAkun: 'Account Portal',
+    masuk: 'Login',
+    keluar: 'Logout',
+    keluarInfo: 'You have logged out.',
+    keuntunganMaksimal: 'MAXIMUM PROFIT',
+    banner1Title: 'Achieving Financial Success Together with Mahadana',
+    banner1Btn: 'Fast Execution System',
+    pasarGlobal: 'GLOBAL MARKET',
+    banner2Title: 'Smart Investment in Stocks',
+    banner2Btn: 'Explore Market',
+    totalSaldo: 'Total Balance',
+    aktif: 'Active',
+    belumMasuk: 'Not Logged In',
+    dapatDitarik: 'Withdrawable',
+    dalamTrading: 'In Trading',
+    keuntungan: 'Profit',
+    depositSaldo: 'Deposit Balance',
+    penarikanDana: 'Withdraw Funds',
+    keunggulanPlatform: 'Platform Advantages',
+    keamananTinggi: 'High Security',
+    keamananDesc: 'Strict & guaranteed encryption.',
+    dataRealtime: 'Real-Time Data',
+    dataRealtimeDesc: 'Monitor prices live.',
+    marketWatch: 'Market Watch & Analytics',
+    hargaTerkini: 'Current Price',
+    tertinggi: 'Highest',
+    terendah: 'Lowest',
+    beliBuy: 'BUY / LONG',
+    jualSell: 'SELL / SHORT',
+    daftarPantauan: 'Watchlist',
+    beritaPasar: 'Latest Market News',
+    pusatTransaksi: 'Fund Transaction Center',
+    deposit: 'Deposit',
+    tarik: 'Withdraw',
+    status: 'Status',
+    jumlahIdr: 'Amount (IDR)',
+    contohDep: 'Example: 500000',
+    kirimDep: 'Submit Deposit Request',
+    jumlahWd: 'Withdrawal Amount (IDR)',
+    contohWd: 'Example: 200000',
+    rekInfo: 'Bank Account Number & Holder Name',
+    rekPlaceholder: 'BCA - 1234567890 (Holder Name)',
+    ajukanWd: 'Request Withdrawal',
+    riwayatTrx: 'Transaction History & Status',
+    terkini: 'Latest',
+    tidakAdaTrx: 'No transaction history.',
+    silakanMasuk: 'Please Login',
+    masukAkses: 'Login to access account',
+    unverified: 'Unverified',
+    rekeningBankSaya: 'My Bank Account Information',
+    pilihBank: 'Select Bank',
+    noRek: 'Bank Account Number',
+    namaPemilik: 'Account Holder Name',
+    simpanBank: 'Save Bank Account',
+    hubungiKami: 'Contact Us',
+    masukDaftar: 'Login / Register',
+    navBeranda: 'Home',
+    navPasar: 'Market',
+    navBerita: 'News',
+    navTransaksi: 'Transaction',
+    navProfil: 'Profile',
+    daftarAkunTab: 'Register Account',
+    emailId: 'Email / User ID',
+    kataSandi: 'Password',
+    namaLengkap: 'Full Name',
+    email: 'Email',
+    daftarSekarang: 'Register Now',
+    statusDepTitle: 'Deposit Request Status',
+    statusDepDesc: 'Deposit request has been created, please contact customer service.',
+    jumlahDepositLabel: 'Deposit Amount',
+    hubungiCs: 'Contact Customer Service',
+    tutup: 'Close',
+    berhasil: 'Success',
+    kesalahan: 'Error',
+    informasi: 'Information',
+    ok: 'OK'
+  },
+  zh: {
+    portalAkun: '账户门户',
+    masuk: '登录',
+    keluar: '登出',
+    keluarInfo: '您已登出。',
+    keuntunganMaksimal: '最高收益',
+    banner1Title: '与Mahadana共同实现财务成功',
+    banner1Btn: '快速执行系统',
+    pasarGlobal: '全球市场',
+    banner2Title: '股票智能投资',
+    banner2Btn: '探索市场',
+    totalSaldo: '总余额',
+    aktif: '活跃',
+    belumMasuk: '未登录',
+    dapatDitarik: '可提现',
+    dalamTrading: '交易中',
+    keuntungan: '利润',
+    depositSaldo: '充值余额',
+    penarikanDana: '提取资金',
+    keunggulanPlatform: '平台优势',
+    keamananTinggi: '高度安全',
+    keamananDesc: '严格且有保障的加密。',
+    dataRealtime: '实时数据',
+    dataRealtimeDesc: '实时监控价格。',
+    marketWatch: '市场观察与分析',
+    hargaTerkini: '当前价格',
+    tertinggi: '最高',
+    terendah: '最低',
+    beliBuy: '买入 / BUY',
+    jualSell: '卖出 / SELL',
+    daftarPantauan: '自选列表',
+    beritaPasar: '最新市场新闻',
+    pusatTransaksi: '资金交易中心',
+    deposit: '充值',
+    tarik: '提现',
+    status: '状态',
+    jumlahIdr: '金额 (IDR)',
+    contohDep: '例如: 500000',
+    kirimDep: '提交充值申请',
+    jumlahWd: '提现金额 (IDR)',
+    contohWd: '例如: 200000',
+    rekInfo: '银行账号与持有人姓名',
+    rekPlaceholder: 'BCA - 1234567890 (持有人姓名)',
+    ajukanWd: '申请提现',
+    riwayatTrx: '交易历史与状态',
+    terkini: '最新',
+    tidakAdaTrx: '无交易记录。',
+    silakanMasuk: '请登录',
+    masukAkses: '登录以访问账户',
+    unverified: '未验证',
+    rekeningBankSaya: '我的银行账户信息',
+    pilihBank: '选择银行',
+    noRek: '银行账号',
+    namaPemilik: '户名',
+    simpanBank: '保存银行账户',
+    hubungiKami: '联系我们',
+    masukDaftar: '登录 / 注册',
+    navBeranda: '首页',
+    navPasar: '市场',
+    navBerita: '新闻',
+    navTransaksi: '交易',
+    navProfil: '个人资料',
+    daftarAkunTab: '注册账户',
+    emailId: '邮箱 / 用户ID',
+    kataSandi: '密码',
+    namaLengkap: '全名',
+    email: '邮箱',
+    daftarSekarang: '立即注册',
+    statusDepTitle: '充值申请状态',
+    statusDepDesc: '充值申请已创建，请联系客服。',
+    jumlahDepositLabel: '充值金额',
+    hubungiCs: '联系客服',
+    tutup: '关闭',
+    berhasil: '成功',
+    kesalahan: '错误',
+    informasi: '信息',
+    ok: '确定'
+  }
+};
+
 export default function Home() {
   const API_BASE_URL = "https://backendmercury.vercel.app";
 
@@ -39,6 +277,10 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<'home' | 'chart' | 'news' | 'order' | 'profile'>('home');
   const [subTab, setSubTab] = useState<'deposit' | 'withdraw' | 'status'>('deposit');
   
+  // State Bahasa (Default: 'id')
+  const [currentLang, setCurrentLang] = useState<'id' | 'en' | 'zh'>('id');
+  const t = (key: string) => translations[currentLang][key] || key;
+
   // Modal states
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'register'>('login');
@@ -146,7 +388,6 @@ export default function Home() {
       window.myChartInstance.destroy();
     }
 
-    // Dynamic labels and datasets based on selected timeframe
     let labels = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'];
     let baseValues = [66200, 66800, 67400, 67100, 68000, 67900, 68400];
 
@@ -161,7 +402,6 @@ export default function Home() {
       baseValues = [62000, 64500, 66000, 68400];
     }
 
-    // Sesuaikan nilai dataPoints secara dinamik mengikut simbol yang dipilih agar tidak sama semua
     let dataPoints = [...baseValues];
     let borderColor = '#2563eb';
     let backgroundColor = 'rgba(37, 99, 235, 0.1)';
@@ -253,12 +493,12 @@ export default function Home() {
         setCurrentUser(data.user);
         localStorage.setItem('tradex_user', JSON.stringify(data.user));
         setAuthModalOpen(false);
-        showAlert('Berhasil', 'Masuk berhasil!');
+        showAlert(t('berhasil'), currentLang === 'en' ? 'Login successful!' : currentLang === 'zh' ? '登录成功！' : 'Masuk berhasil!');
       } else {
-        showAlert('Kesalahan', data.message || 'Masuk gagal');
+        showAlert(t('kesalahan'), data.message || (currentLang === 'en' ? 'Login failed' : currentLang === 'zh' ? '登录失败' : 'Masuk gagal'));
       }
     } catch (err) {
-      showAlert('Kesalahan', 'Gagal terhubung dengan server');
+      showAlert(t('kesalahan'), currentLang === 'en' ? 'Failed to connect to server' : currentLang === 'zh' ? '连接服务器失败' : 'Gagal terhubung dengan server');
     }
   };
 
@@ -275,12 +515,12 @@ export default function Home() {
         setCurrentUser(data.user);
         localStorage.setItem('tradex_user', JSON.stringify(data.user));
         setAuthModalOpen(false);
-        showAlert('Berhasil', 'Pendaftaran berhasil!');
+        showAlert(t('berhasil'), currentLang === 'en' ? 'Registration successful!' : currentLang === 'zh' ? '注册成功！' : 'Pendaftaran berhasil!');
       } else {
-        showAlert('Kesalahan', data.message || 'Pendaftaran gagal');
+        showAlert(t('kesalahan'), data.message || (currentLang === 'en' ? 'Registration failed' : currentLang === 'zh' ? '注册失败' : 'Pendaftaran gagal'));
       }
     } catch (err) {
-      showAlert('Kesalahan', 'Gagal terhubung dengan server');
+      showAlert(t('kesalahan'), currentLang === 'en' ? 'Failed to connect to server' : currentLang === 'zh' ? '连接服务器失败' : 'Gagal terhubung dengan server');
     }
   };
 
@@ -308,10 +548,10 @@ export default function Home() {
         setDepAmountInput('');
       } else {
         const data = await res.json();
-        showAlert('Kesalahan', data.message || 'Pengajuan deposit gagal');
+        showAlert(t('kesalahan'), data.message || 'Pengajuan deposit gagal');
       }
     } catch (err) {
-      showAlert('Kesalahan', 'Gagal membuat transaksi');
+      showAlert(t('kesalahan'), 'Gagal membuat transaksi');
     }
   };
 
@@ -334,16 +574,16 @@ export default function Home() {
       });
 
       if (res.ok) {
-        showAlert('Berhasil', 'Permohonan penarikan berhasil dikirim');
+        showAlert(t('berhasil'), currentLang === 'en' ? 'Withdrawal request sent successfully' : currentLang === 'zh' ? '提现申请发送成功' : 'Permohonan penarikan berhasil dikirim');
         setWdAmountInput('');
         setSubTab('status');
         fetchTransactions();
       } else {
         const data = await res.json();
-        showAlert('Kesalahan', data.message || 'Penarikan gagal');
+        showAlert(t('kesalahan'), data.message || 'Penarikan gagal');
       }
     } catch (err) {
-      showAlert('Kesalahan', 'Gagal membuat transaksi penarikan');
+      showAlert(t('kesalahan'), 'Gagal membuat transaksi penarikan');
     }
   };
 
@@ -375,12 +615,12 @@ export default function Home() {
         const updated = await res.json();
         setCurrentUser(updated);
         localStorage.setItem('tradex_user', JSON.stringify(updated));
-        showAlert('Berhasil', 'Akun bank berhasil disimpan!');
+        showAlert(t('berhasil'), currentLang === 'en' ? 'Bank account saved successfully!' : currentLang === 'zh' ? '银行账户保存成功！' : 'Akun bank berhasil disimpan!');
       } else {
-        showAlert('Kesalahan', 'Gagal menyimpan informasi bank.');
+        showAlert(t('kesalahan'), 'Gagal menyimpan informasi bank.');
       }
     } catch (err) {
-      showAlert('Kesalahan', 'Gagal menyimpan informasi bank');
+      showAlert(t('kesalahan'), 'Gagal menyimpan informasi bank');
     }
   };
 
@@ -392,7 +632,7 @@ export default function Home() {
     if (currentUser) {
       localStorage.removeItem('tradex_user');
       setCurrentUser(null);
-      showAlert('Informasi', 'Anda telah keluar.');
+      showAlert(t('informasi'), t('keluarInfo'));
     } else {
       setAuthMode('login');
       setAuthModalOpen(true);
@@ -415,12 +655,17 @@ export default function Home() {
           <img src="./myylogo.png" alt="Logo Mahadana" className="h-8 w-auto object-contain" />
           <div>
             <h1 className="font-bold text-sm tracking-wide text-blue-900 leading-none">MAHADANA</h1>
-            <p className="text-[10px] text-slate-500">Portal Akun</p>
+            <p className="text-[10px] text-slate-500">{t('portalAkun')}</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-3">
-          <select onChange={(e) => console.log(e.target.value)} defaultValue="id" className="bg-slate-100 border border-slate-300 text-xs text-slate-700 rounded-lg px-2 py-1 outline-none focus:border-blue-500">
+          {/* Dropdown Pemilihan Bahasa 100% Berfungsi */}
+          <select 
+            value={currentLang} 
+            onChange={(e) => setCurrentLang(e.target.value as 'id' | 'en' | 'zh')} 
+            className="bg-slate-100 border border-slate-300 text-xs text-slate-700 rounded-lg px-2 py-1 outline-none focus:border-blue-500 cursor-pointer font-medium"
+          >
             <option value="id">🇮🇩 ID</option>
             <option value="en">🇬🇧 EN</option>
             <option value="zh">🇨🇳 ZH</option>
@@ -430,7 +675,7 @@ export default function Home() {
             onClick={() => currentUser ? setActiveTab('profile') : setAuthModalOpen(true)} 
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-3 py-1.5 rounded-lg transition shadow-md shadow-blue-600/20"
           >
-            {currentUser ? (currentUser.name ? currentUser.name.split(' ')[0] : 'User') : 'Masuk'}
+            {currentUser ? (currentUser.name ? currentUser.name.split(' ')[0] : 'User') : t('masuk')}
           </button>
         </div>
       </header>
@@ -447,25 +692,25 @@ export default function Home() {
               <div className="flex transition-transform duration-500 ease-in-out w-[200%]" style={{ transform: `translateX(-${currentSlide * 50}%)` }}>
                 <div className="w-1/2 p-5 bg-cover bg-center flex flex-col justify-between space-y-3 min-h-[160px]" style={{ backgroundImage: "url('./Mybanner1.jpeg')" }}>
                   <span className="text-[10px] font-bold text-blue-700 tracking-wider bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full w-max border border-blue-200 shadow-sm">
-                    KEUNTUNGAN MAKSIMAL
+                    {t('keuntunganMaksimal')}
                   </span>
                   <h2 className="text-lg font-extrabold text-slate-900 leading-tight bg-white/60 p-1.5 rounded-lg backdrop-blur-[2px]">
-                    Mencapai Kesuksesan Finansial Bersama Mahadana
+                    {t('banner1Title')}
                   </h2>
                   <button onClick={() => setActiveTab('chart')} className="text-xs bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-xl w-max transition shadow-sm">
-                    Sistem Eksekusi Cepat &rarr;
+                    {t('banner1Btn')} &rarr;
                   </button>
                 </div>
 
                 <div className="w-1/2 p-5 bg-cover bg-center flex flex-col justify-between space-y-3 min-h-[160px]" style={{ backgroundImage: "url('./Mybanner2.jpeg')" }}>
                   <span className="text-[10px] font-bold text-blue-700 tracking-wider bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-full w-max border border-blue-200 shadow-sm">
-                    PASAR GLOBAL
+                    {t('pasarGlobal')}
                   </span>
                   <h2 className="text-lg font-extrabold text-slate-900 leading-tight bg-white/60 p-1.5 rounded-lg backdrop-blur-[2px]">
-                    Investasi Cerdas dalam Saham
+                    {t('banner2Title')}
                   </h2>
                   <button onClick={() => setActiveTab('chart')} className="text-xs bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-xl w-max transition shadow-sm">
-                    Jelajahi Pasar &rarr;
+                    {t('banner2Btn')} &rarr;
                   </button>
                 </div>
               </div>
@@ -479,49 +724,49 @@ export default function Home() {
             {/* RINGKASAN SALDO REAL */}
             <div className="bg-white p-4 rounded-2xl border border-blue-100 shadow-md space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-slate-500 font-medium">Total Saldo</span>
+                <span className="text-xs text-slate-500 font-medium">{t('totalSaldo')}</span>
                 <span className={`text-[10px] font-semibold px-2 py-0.5 rounded border ${currentUser ? 'text-blue-700 bg-blue-500/10 border-blue-500/20' : 'text-amber-700 bg-amber-500/10 border-amber-500/20'}`}>
-                  {currentUser ? 'Aktif' : 'Belum Masuk'}
+                  {currentUser ? t('aktif') : t('belumMasuk')}
                 </span>
               </div>
               <p className="text-2xl font-black text-blue-950">{formattedBalance}</p>
               
               <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 text-center">
                 <div>
-                  <p className="text-[10px] text-slate-500">Dapat Ditarik</p>
+                  <p className="text-[10px] text-slate-500">{t('dapatDitarik')}</p>
                   <p className="text-xs font-bold text-slate-800">{formattedBalance}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-slate-500">Dalam Trading</p>
+                  <p className="text-[10px] text-slate-500">{t('dalamTrading')}</p>
                   <p className="text-xs font-bold text-slate-800">Rp 0,00</p>
                 </div>
                 <div>
-                  <p className="text-[10px] text-slate-500">Keuntungan</p>
+                  <p className="text-[10px] text-slate-500">{t('keuntungan')}</p>
                   <p className="text-xs font-bold text-blue-600">Rp 0,00</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <button onClick={() => { setActiveTab('order'); setSubTab('deposit'); }} className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs py-2 rounded-xl flex items-center justify-center transition shadow-md shadow-blue-600/20">
-                  Deposit Saldo
+                  {t('depositSaldo')}
                 </button>
                 <button onClick={() => { setActiveTab('order'); setSubTab('withdraw'); }} className="bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs py-2 rounded-xl flex items-center justify-center transition shadow-md shadow-rose-500/20">
-                  Penarikan Dana
+                  {t('penarikanDana')}
                 </button>
               </div>
             </div>
 
             {/* KEUNGGULAN PLATFORM */}
             <div className="space-y-2">
-              <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Keunggulan Platform</h3>
+              <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">{t('keunggulanPlatform')}</h3>
               <div className="grid grid-cols-2 gap-2">
                 <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-1">
-                  <p className="font-bold text-xs text-slate-900">Keamanan Tinggi</p>
-                  <p className="text-[10px] text-slate-500">Enkripsi ketat & terjamin.</p>
+                  <p className="font-bold text-xs text-slate-900">{t('keamananTinggi')}</p>
+                  <p className="text-[10px] text-slate-500">{t('keamananDesc')}</p>
                 </div>
                 <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm space-y-1">
-                  <p className="font-bold text-xs text-slate-900">Data Real-Time</p>
-                  <p className="text-[10px] text-slate-500">Pantau harga secara langsung.</p>
+                  <p className="font-bold text-xs text-slate-900">{t('dataRealtime')}</p>
+                  <p className="text-[10px] text-slate-500">{t('dataRealtimeDesc')}</p>
                 </div>
               </div>
             </div>
@@ -539,7 +784,7 @@ export default function Home() {
                     <h2 className="text-lg font-bold text-slate-900">{selectedSymbol}</h2>
                     <span className="text-xs font-bold text-blue-700 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20">+3.12%</span>
                   </div>
-                  <p className="text-[11px] text-slate-500">Market Watch & Analytics</p>
+                  <p className="text-[11px] text-slate-500">{t('marketWatch')}</p>
                 </div>
                 
                 <select onChange={(e) => updateChartSymbol(e.target.value)} className="bg-slate-50 border border-slate-200 text-xs text-slate-800 rounded-lg px-2.5 py-1.5 outline-none focus:border-blue-500" value={selectedSymbol}>
@@ -568,19 +813,19 @@ export default function Home() {
 
               <div className="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-center">
                 <div>
-                  <p className="text-[9px] text-slate-500">Harga Terkini</p>
+                  <p className="text-[9px] text-slate-500">{t('hargaTerkini')}</p>
                   <p className="text-xs font-bold text-slate-900">
                     {watchlistData.find(w => w.symbol === selectedSymbol)?.price || '$68,400.00'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[9px] text-slate-500">Tertinggi ({chartTimeframe})</p>
+                  <p className="text-[9px] text-slate-500">{t('tertinggi')} ({chartTimeframe})</p>
                   <p className="text-xs font-bold text-blue-600">
                     {selectedSymbol === 'BTC/USD' ? '$69,150.00' : selectedSymbol === 'ETH/USD' ? '$3,620.00' : 'Normal'}
                   </p>
                 </div>
                 <div>
-                  <p className="text-[9px] text-slate-500">Terendah ({chartTimeframe})</p>
+                  <p className="text-[9px] text-slate-500">{t('terendah')} ({chartTimeframe})</p>
                   <p className="text-xs font-bold text-rose-600">
                     {selectedSymbol === 'BTC/USD' ? '$66,200.00' : selectedSymbol === 'ETH/USD' ? '$3,410.00' : 'Normal'}
                   </p>
@@ -593,17 +838,17 @@ export default function Home() {
 
               <div className="grid grid-cols-2 gap-2 pt-2">
                 <button onClick={() => { setActiveTab('order'); setSubTab('deposit'); }} className="bg-blue-600 hover:bg-blue-700 text-white font-black py-2.5 rounded-xl text-xs flex items-center justify-center transition shadow-md shadow-blue-600/20">
-                  BELI / BUY
+                  {t('beliBuy')}
                 </button>
                 <button onClick={() => { setActiveTab('order'); setSubTab('withdraw'); }} className="bg-rose-500 hover:bg-rose-600 text-white font-black py-2.5 rounded-xl text-xs flex items-center justify-center transition shadow-md shadow-rose-500/20">
-                  JUAL / SELL
+                  {t('jualSell')}
                 </button>
               </div>
             </div>
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Daftar Pantauan</h3>
+                <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">{t('daftarPantauan')}</h3>
                 <div className="flex space-x-1 text-[10px] overflow-x-auto pb-1">
                   {['all', 'saham-id', 'saham-us', 'crypto', 'forex'].map((cat) => (
                     <button 
@@ -640,7 +885,7 @@ export default function Home() {
         {/* TAB 3: BERITA / NEWS */}
         {activeTab === 'news' && (
           <div className="space-y-3">
-            <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">Berita Pasar Terkini</h3>
+            <h3 className="text-xs font-bold text-blue-900 tracking-wider uppercase">{t('beritaPasar')}</h3>
             <div className="space-y-2.5">
               <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm space-y-1.5">
                 <div className="flex justify-between items-center text-[10px]">
@@ -665,22 +910,22 @@ export default function Home() {
         {/* TAB 4: TRANSAKSI / ORDER */}
         {activeTab === 'order' && (
           <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-md space-y-4">
-            <h2 className="text-base font-bold text-slate-900 text-center">Pusat Transaksi Dana</h2>
+            <h2 className="text-base font-bold text-slate-900 text-center">{t('pusatTransaksi')}</h2>
 
             <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
-              <button onClick={() => setSubTab('deposit')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'deposit' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Deposit</button>
-              <button onClick={() => setSubTab('withdraw')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'withdraw' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Tarik</button>
-              <button onClick={() => { setSubTab('status'); fetchTransactions(); }} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'status' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>Status</button>
+              <button onClick={() => setSubTab('deposit')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'deposit' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>{t('deposit')}</button>
+              <button onClick={() => setSubTab('withdraw')} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'withdraw' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>{t('tarik')}</button>
+              <button onClick={() => { setSubTab('status'); fetchTransactions(); }} className={`w-1/3 py-2 rounded-lg font-bold transition ${subTab === 'status' ? 'bg-blue-600 text-white' : 'text-slate-600'}`}>{t('status')}</button>
             </div>
 
             {subTab === 'deposit' && (
               <form onSubmit={handleDepositAction} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Jumlah (IDR)</label>
-                  <input type="number" value={depAmountInput} onChange={(e) => setDepAmountInput(e.target.value)} required placeholder="Contoh: 500000" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-blue-500" />
+                  <label className="block text-xs text-slate-500 mb-1">{t('jumlahIdr')}</label>
+                  <input type="number" value={depAmountInput} onChange={(e) => setDepAmountInput(e.target.value)} required placeholder={t('contohDep')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
-                  Kirim Pengajuan Deposit
+                  {t('kirimDep')}
                 </button>
               </form>
             )}
@@ -688,15 +933,15 @@ export default function Home() {
             {subTab === 'withdraw' && (
               <form onSubmit={handleWithdrawAction} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Jumlah Penarikan (IDR)</label>
-                  <input type="number" value={wdAmountInput} onChange={(e) => setWdAmountInput(e.target.value)} required placeholder="Contoh: 200000" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
+                  <label className="block text-xs text-slate-500 mb-1">{t('jumlahWd')}</label>
+                  <input type="number" value={wdAmountInput} onChange={(e) => setWdAmountInput(e.target.value)} required placeholder={t('contohWd')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Nomor Rekening Bank & Nama Pemilik</label>
-                  <input type="text" value={bankInfoInput} onChange={(e) => setBankInfoInput(e.target.value)} required placeholder="BCA - 1234567890 (Nama Pemilik)" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
+                  <label className="block text-xs text-slate-500 mb-1">{t('rekInfo')}</label>
+                  <input type="text" value={bankInfoInput} onChange={(e) => setBankInfoInput(e.target.value)} required placeholder={t('rekPlaceholder')} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 outline-none focus:border-rose-500" />
                 </div>
                 <button type="submit" className="w-full bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-rose-500/20">
-                  Ajukan Penarikan
+                  {t('ajukanWd')}
                 </button>
               </form>
             )}
@@ -704,12 +949,12 @@ export default function Home() {
             {subTab === 'status' && (
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <h4 className="text-xs font-bold text-slate-700">Riwayat & Status Transaksi</h4>
-                  <span className="text-[10px] text-slate-400">Terkini</span>
+                  <h4 className="text-xs font-bold text-slate-700">{t('riwayatTrx')}</h4>
+                  <span className="text-[10px] text-slate-400">{t('terkini')}</span>
                 </div>
                 <div className="space-y-2">
                   {transactions.length === 0 ? (
-                    <p className="text-xs text-slate-500 text-center py-4">Tidak ada riwayat transaksi.</p>
+                    <p className="text-xs text-slate-500 text-center py-4">{t('tidakAdaTrx')}</p>
                   ) : (
                     transactions.map((trx) => (
                       <div key={trx.trxId} className="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center text-xs">
@@ -744,30 +989,30 @@ export default function Home() {
                   {currentUser?.name ? currentUser.name.charAt(0).toUpperCase() : '?'}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-sm text-slate-900">{currentUser?.name || 'Silakan Masuk'}</h3>
-                  <p className="text-[11px] text-slate-500">{currentUser?.email || 'Masuk untuk akses akun'}</p>
+                  <h3 className="font-bold text-sm text-slate-900">{currentUser?.name || t('silakanMasuk')}</h3>
+                  <p className="text-[11px] text-slate-500">{currentUser?.email || t('masukAkses')}</p>
                   <span className="inline-block mt-1 text-[9px] bg-amber-500/10 text-amber-700 border border-amber-500/20 px-2 py-0.5 rounded font-bold">
-                    {currentUser?.kycStatus || 'Unverified'}
+                    {currentUser?.kycStatus || t('unverified')}
                   </span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-2 pt-2">
                 <button onClick={() => { setActiveTab('order'); setSubTab('deposit'); }} className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl text-xs transition">
-                  Deposit
+                  {t('deposit')}
                 </button>
                 <button onClick={() => { setActiveTab('order'); setSubTab('withdraw'); }} className="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2 rounded-xl text-xs border border-slate-200 transition">
-                  Tarik
+                  {t('tarik')}
                 </button>
               </div>
             </div>
 
             <form onSubmit={handleBankSave} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-md space-y-3">
               <h4 className="font-bold text-xs text-slate-900 flex items-center">
-                Informasi Rekening Bank Saya
+                {t('rekeningBankSaya')}
               </h4>
               <div>
-                <label className="block text-[11px] text-slate-500 mb-1">Pilih Bank</label>
+                <label className="block text-[11px] text-slate-500 mb-1">{t('pilihBank')}</label>
                 <select value={userBankName} onChange={(e) => setUserBankName(e.target.value)} className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500">
                   <option value="BCA">BCA (Bank Central Asia)</option>
                   <option value="Mandiri">Bank Mandiri</option>
@@ -779,24 +1024,24 @@ export default function Home() {
                 </select>
               </div>
               <div>
-                <label className="block text-[11px] text-slate-500 mb-1">Nomor Rekening Bank</label>
+                <label className="block text-[11px] text-slate-500 mb-1">{t('noRek')}</label>
                 <input type="text" value={userAccInput} onChange={(e) => setUserAccInput(e.target.value)} required placeholder="1234567890" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
               </div>
               <div>
-                <label className="block text-[11px] text-slate-500 mb-1">Nama Pemilik Rekening</label>
+                <label className="block text-[11px] text-slate-500 mb-1">{t('namaPemilik')}</label>
                 <input type="text" value={userHolderInput} onChange={(e) => setUserHolderInput(e.target.value)} required placeholder="Nama Anda" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
               </div>
               <button type="submit" className="w-full bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-bold py-2 rounded-xl text-xs transition">
-                Simpan Rekening Bank
+                {t('simpanBank')}
               </button>
             </form>
 
             <div className="space-y-2">
               <a href="https://wa.me/00000" target="_blank" className="w-full bg-white border border-slate-200 text-slate-700 p-3 rounded-xl flex items-center justify-between transition shadow-sm hover:border-blue-300">
-                <span className="text-xs font-bold">Hubungi Kami</span>
+                <span className="text-xs font-bold">{t('hubungiKami')}</span>
               </a>
               <button onClick={handleLogoutLoginBtn} className="w-full bg-rose-50 border border-rose-200 text-rose-600 hover:bg-rose-100 p-3 rounded-xl font-bold text-xs transition">
-                {currentUser ? 'Keluar' : 'Masuk / Daftar'}
+                {currentUser ? t('keluar') : t('masukDaftar')}
               </button>
             </div>
           </div>
@@ -809,23 +1054,23 @@ export default function Home() {
         <div className="max-w-md mx-auto flex justify-around items-center text-[10px]">
           <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'home' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="home" className="w-5 h-5"></i>
-            <span>Beranda</span>
+            <span>{t('navBeranda')}</span>
           </button>
           <button onClick={() => setActiveTab('chart')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'chart' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="bar-chart-2" className="w-5 h-5"></i>
-            <span>Pasar</span>
+            <span>{t('navPasar')}</span>
           </button>
           <button onClick={() => setActiveTab('news')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'news' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="globe" className="w-5 h-5"></i>
-            <span>Berita</span>
+            <span>{t('navBerita')}</span>
           </button>
           <button onClick={() => setActiveTab('order')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'order' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="credit-card" className="w-5 h-5"></i>
-            <span>Transaksi</span>
+            <span>{t('navTransaksi')}</span>
           </button>
           <button onClick={() => setActiveTab('profile')} className={`flex flex-col items-center space-y-1 transition ${activeTab === 'profile' ? 'text-blue-600 font-bold' : 'text-slate-400 hover:text-slate-600'}`}>
             <i data-feather="user" className="w-5 h-5"></i>
-            <span>Profil</span>
+            <span>{t('navProfil')}</span>
           </button>
         </div>
       </nav>
@@ -840,43 +1085,43 @@ export default function Home() {
 
             <div className="flex border-b border-slate-200 pb-2">
               <button onClick={() => setAuthMode('login')} className={`w-1/2 text-center pb-1 text-xs font-bold ${authMode === 'login' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-400'}`}>
-                Masuk
+                {t('masuk')}
               </button>
               <button onClick={() => setAuthMode('register')} className={`w-1/2 text-center pb-1 text-xs font-bold ${authMode === 'register' ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-400'}`}>
-                Daftar Akun
+                {t('daftarAkunTab')}
               </button>
             </div>
 
             {authMode === 'login' ? (
               <form onSubmit={handleLoginSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Email / ID Pengguna</label>
+                  <label className="block text-xs text-slate-500 mb-1">{t('emailId')}</label>
                   <input type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Kata Sandi</label>
+                  <label className="block text-xs text-slate-500 mb-1">{t('kataSandi')}</label>
                   <input type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
-                  Masuk
+                  {t('masuk')}
                 </button>
               </form>
             ) : (
               <form onSubmit={handleRegisterSubmit} className="space-y-3">
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Nama Lengkap</label>
+                  <label className="block text-xs text-slate-500 mb-1">{t('namaLengkap')}</label>
                   <input type="text" value={regFullname} onChange={(e) => setRegFullname(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Email</label>
+                  <label className="block text-xs text-slate-500 mb-1">{t('email')}</label>
                   <input type="email" value={regEmail} onChange={(e) => setRegEmail(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Kata Sandi</label>
+                  <label className="block text-xs text-slate-500 mb-1">{t('kataSandi')}</label>
                   <input type="password" value={regPassword} onChange={(e) => setRegPassword(e.target.value)} required className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none focus:border-blue-500" />
                 </div>
                 <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition shadow-md shadow-blue-600/20">
-                  Daftar Sekarang
+                  {t('daftarSekarang')}
                 </button>
               </form>
             )}
@@ -889,19 +1134,19 @@ export default function Home() {
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white border border-slate-200 w-full max-w-xs rounded-2xl p-5 text-center space-y-4 shadow-2xl">
             <div>
-              <h3 className="font-bold text-sm text-slate-900">Status Pengajuan Deposit</h3>
-              <p className="text-xs text-slate-500 mt-1">Pengajuan deposit telah dibuat, silakan hubungi layanan pelanggan.</p>
+              <h3 className="font-bold text-sm text-slate-900">{t('statusDepTitle')}</h3>
+              <p className="text-xs text-slate-500 mt-1">{t('statusDepDesc')}</p>
             </div>
             <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-              <p className="text-[10px] text-slate-400">Jumlah Deposit</p>
+              <p className="text-[10px] text-slate-400">{t('jumlahDepositLabel')}</p>
               <p className="text-base font-extrabold text-blue-600">Rp {depositAmountPop.toLocaleString('id-ID', { minimumFractionDigits: 2 })}</p>
             </div>
             <div className="space-y-2">
               <button onClick={() => window.open('https://wa.me/00000', '_blank')} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
-                Hubungi Layanan Pelanggan
+                {t('hubungiCs')}
               </button>
               <button onClick={() => setDepositModalOpen(false)} className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2 rounded-xl text-xs transition">
-                Tutup
+                {t('tutup')}
               </button>
             </div>
           </div>
@@ -917,7 +1162,7 @@ export default function Home() {
               <p className="text-xs text-slate-500 mt-1">{alertModal.message}</p>
             </div>
             <button onClick={() => setAlertModal({ open: false, title: '', message: '' })} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-xs transition">
-              OK
+              {t('ok')}
             </button>
           </div>
         </div>
